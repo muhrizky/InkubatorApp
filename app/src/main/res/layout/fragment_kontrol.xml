@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.KontrolFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swipe_refresh_layout"
+        >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="@color/labeledittext"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_warning_black_24dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/text_judul_card1kontrol"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:text="@string/text_penjelasan_judulcardkontrol"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/primaryDarkColor"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/text_judul_card2kontrol"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_saat_ini"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/nilaisuhukontrol1"
+                        android:padding="2dp"
+                        android:text="@string/text_nilai_suhu_saatini_fkontrol"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_tujuan"
+                        android:textSize="15sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="@string/edittxt_nilai_suhu_tujuan_fkontrol"
+                            android:inputType="numberDecimal"
+                            android:padding="2dp"
+                            android:maxLength="2"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:theme="@style/Widget.AppCompat.Button.Colored"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/btn_set_suhu_fkontrol1"
+                        android:textColor="@color/black_transparant" />
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/primaryDarkColor"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/text_judul_card3kontrol"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_saat_ini"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/nilaisuhukontrol2"
+                        android:padding="2dp"
+                        android:text="@string/text_nilai_suhu_saatini_fkontrol2"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_tujuan"
+                        android:textSize="15sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="@string/edittxt_nilai_suhu_tujuanfkontrol2"
+                            android:inputType="numberDecimal"
+                            android:padding="2dp"
+                            android:maxLength="2"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:theme="@style/Widget.AppCompat.Button.Colored"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/btn_set_suhu_fkontrol2"
+                        android:textColor="@color/black_transparant" />
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/primaryDarkColor"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="@string/text_judul_card2monitor3"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_saat_ini"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/nilaisuhukontrol3"
+                        android:padding="2dp"
+                        android:text="@string/text_nilai_suhu_saatini_fkontrol3"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="@string/text_suhu_tujuan"
+                        android:textSize="15sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="@string/edittxt_nilai_suhu_tujuan_fkontrol3"
+                            android:inputType="numberDecimal"
+                            android:padding="2dp"
+                            android:maxLength="2"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:theme="@style/Widget.AppCompat.Button.Colored"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/btn_set_suhu_fkontrol3"
+                        android:textColor="@color/black_transparant" />
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</FrameLayout>

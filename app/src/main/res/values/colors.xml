@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#00a65a</color>
+    <color name="primaryLightColor">#54d988</color>
+    <color name="primaryDarkColor">#00762f</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="labeledittext">#fdac36</color>
+    <color name="bg_login">#26ae90</color>
+    <color name="input_login">#222222</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="btn_login">#26ae90</color>
+    <color name="btn_login_bg">#eceef1</color>
+    <color name="lbl_name">#333333</color>
+    <color name="white">#FFFF</color>
+    <color name="btn_green_backlogin">#4bad4f</color>
+    <color name="black_transparant">#96000000</color>
+
+</resources>

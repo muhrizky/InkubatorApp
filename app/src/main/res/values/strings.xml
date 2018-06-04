@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">Inkubator Bayi</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">ADMIN PANEL</string>
+    <string name="nav_header_subtitle">Sistem Pengendali Inkubator Bayi</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!---  activity forgot pasword  -->
+    <string name="text1_forgot_passwd">Kesusahan Login ?</string>
+    <string name="text2_forgot_passwd">Login bermasalah bisa disebabkan dari salahnya username atau password atau bisa keduanya, segera hubungi administator. Klik Email Administator berikut untuk mengirim pelaporan</string>
+    <string name="hint_forgot_passwd">Registered Email Id"</string>
+    <string name="btn_reset_passwd">Reset Password</string>
+    <string name="btn_backlogin">Back to Login Page</string>
+
+    <!--- activity login -->
+    <string name="hint_username_login">User Name</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_butuh_bantuan">Butuh Bantuan? Klik Disini</string>
+    <string name="text_forgot_pasword2">its often forgoten</string>
+
+    <!-- activity splashscreen -->
+    <string name="text_judul_spalashscreen">Sistem Pengendali Inkubator Bayi</string>
+
+
+    <!--- fragment beranda -->
+        <!--- Card satu -->
+            <string name="text_profile_admin">Profile Admin</string>
+            <string name="text_nama_admin">Muhammad Rizqi</string>
+            <string name="text_jabatan_admin">Kepala Pengawas Laboratorium</string>
+        <!-- Card dua -->
+            <string name="text_judul_card2beranda">Monitoring Inkubator 1</string>
+            <string name="text_nilai_suhu">18°C</string>
+            <string name="text_nilai_kelembapan">38%</string>
+            <string name="text_nilai_berat">9 Kg</string>
+            <string name="text_nilai_kadaroksigen">22 mg/l</string>
+        <!-- Card tiga -->
+            <string name="text_judul_card3beranda">Kontrol Inkubator 1</string>
+            <string name="text_kontrol_warning">Peringatan Menu Kontrol dalam sistem ini hanya digunakan dalam ujicoba, dalam prakteknya Belum digunakan</string>
+            <string name="text_suhu_saat_ini">Suhu saat ini</string>
+            <string name="text_nilai_suhu_saat_ini">30°C</string>
+            <string name="text_suhu_tujuan">Suhu Tujuan</string>
+            <string name="edittxt_nilai_suhu_tujuan">Tuliskan Suhu Dalam °C </string>
+            <string name="btn_set_suhu">SET SUHU TUJUAN</string>
+        <!-- Card empat -->
+            <string name="text_judul_card4beranda">Simulasi Inkubator</string>
+            <string name="text_penjelasan_card3">Simulasi inkubator merupakan Simulasi interaktif dari Inkubator</string>
+        <!-- Card lima -->
+            <string name="text_judul_card5bernda">Data Inkubator</string>
+            <string name="text_judul_grafik">Grafik Data Suhu</string>
+            <string name="text_penjelasan_grafik">Data ini merupakan perbandingan Suhu tiap Inkubator, dalam kurun waktu 1 hari yang lalu</string>
+            <string name="btn_unduh_data_card5beranda">Unduh Data Ini</string>
+
+
+    <!-- Fragment Data -->
+        <!-- Card Satu -->
+            <string name="text_judul_card1data">Data Inkubator</string>
+            <string name="text_penjelasan_judulcard1">Menu Data inkubator ini digunakan untuk melihat data realtime dari sensor yang ada, memungkinkan juga untuk mengunduhnya sesuai dengan tanggal dan waktu yang dipilih.</string>
+        <!-- Card Dua -->
+            <string name="text_judul_card2data">Unduh Data Inkubator</string>
+            <string name="text_petunjuk_pengisian">Petunjuk Pengisian</string>
+            <string name="text_penjelasan_petunjukpengisian">User harus mengisikan semua form yang ada, dari inkubator yang dipilih, dan rentang waktunya. Sejauh ini hanya satu inkubator yang dapat di download datanya, inkubator tersebut yaitu inkubator 1</string>
+            <string name="text_pilih_inkubator">Pilih Inkubator</string>
+            <string name="chkbox_ink1">Inkubator 1</string>
+            <string name="chkbox_ink2">Inkubator 2</string>
+            <string name="chkbox_ink3">Inkubator 3</string>
+            <string name="edttxt_waktu_awal">Masukan Tanggal dan Waktu Mulai</string>
+            <string name="edttxt_waktu_akhir">Masukan Tanggal dan Waktu Selesai</string>
+            <string name="btn_unduh_data_card2data">Unduh Data</string>
+    
+    <!-- Fragment Kontrol -->
+        <!-- Card Satu -->
+            <string name="text_judul_card1kontrol">Peringatan !!</string>
+            <string name="text_penjelasan_judulcardkontrol">Menu Kontrol dalam sistem ini hanya digunakan dalam ujicoba, dalam prakteknya belum digunakan</string>
+        <!-- Card Dua -->
+            <string name="text_judul_card2kontrol">Kontrol Inkubator 1</string>
+            <string name="text_nilai_suhu_saatini_fkontrol">28°C</string>
+            <string name="edittxt_nilai_suhu_tujuan_fkontrol">Tuliskan Suhu Dalam °C </string>
+            <string name="btn_set_suhu_fkontrol1">SET SUHU TUJUAN</string>
+        <!-- Card Tiga -->
+            <string name="text_judul_card3kontrol">Kontrol Inkubator 2</string>
+            <string name="edittxt_nilai_suhu_tujuanfkontrol2">Tuliskan Suhu Dalam °C </string>
+            <string name="text_nilai_suhu_saatini_fkontrol2">29°C</string>
+            <string name="btn_set_suhu_fkontrol2">SET SUHU TUJUAN</string>
+        <!-- Card Empat -->
+            <string name="text_judul_card4kontrol">Kontrol Inkubator 3</string>
+            <string name="edittxt_nilai_suhu_tujuan_fkontrol3">Tuliskan Suhu Dalam °C </string>
+            <string name="text_nilai_suhu_saatini_fkontrol3">30°C</string>
+            <string name="btn_set_suhu_fkontrol3">SET SUHU TUJUAN</string>
+
+    <!-- Fragment Monitoring -->
+        <!-- Card Satu -->
+            <string name="text_judul_card1monitor">Monitoring Inkubator</string>
+            <string name="text_penjelasan_judulcardmonitor">Menu Monitoring berisikan kondisi inkubator yang berisikan dari beberapa sensor didalamnya, berikut sensor-sensor yang digunakan</string>
+            <string name="text_suhu_icon">Suhu</string>
+            <string name="text_kelembapan_icon">Kelembapan</string>
+            <string name="text_beratbadan_icon">Berat Badan</string>
+            <string name="text_kadaroksigen_icon">Kadar Oksigen</string>
+        <!-- Card Dua -->
+            <string name="text_judul_card2monitor">Monitoring Inkubator 1</string>
+            <string name="text_nilai_suhu_fmonitor">18°C"</string>
+            <string name="text_nilai_kelembapan_fmonitor">38%</string>
+            <string name="text_nilai_berat_fmonitor">9 Kg</string>
+            <string name="text_nilai_kadaroksigen_fmonitor">22 mg/l</string>
+        <!-- Card Tiga -->
+            <string name="text_judul_card2monitor2">Monitoring Inkubator 2</string>
+            <string name="text_nilai_suhu_fmonitor2">18°C"</string>
+            <string name="text_nilai_kelembapan_fmonitor2">38%</string>
+            <string name="text_nilai_berat_fmonitor2">9 Kg</string>
+            <string name="text_nilai_kadaroksigen_fmonitor2">22 mg/l</string>
+        <!-- Card Empat -->
+            <string name="text_judul_card2monitor3">Monitoring Inkubator 3</string>
+            <string name="text_nilai_suhu_fmonitor3">18°C"</string>
+            <string name="text_nilai_kelembapan_fmonitor3">38%</string>
+            <string name="text_nilai_berat_fmonitor3">9 Kg</string>
+            <string name="text_nilai_kadaroksigen_fmonitor3">22 mg/l</string>
+    
+    <!-- Fragment Simulasi -->
+        <string name="text_judul_card1simulasi">Simulasi Kerja Inkubator</string>
+        <string name="text_penjelasan_judulsimualsi">Menu Simulasi Kerja inkubator berisikan video animasi dari sistem kerja dari inkubator yang digunakan.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="nav_item_activity_titles">
+        <item>Beranda</item>
+        <item>Monitoring</item>
+        <item>Simulasi</item>
+        <item>Kontrol</item>
+        <item>Data</item>
+    </array>
+</resources>

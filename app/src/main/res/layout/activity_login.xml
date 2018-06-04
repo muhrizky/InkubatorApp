@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/primaryDarkColor"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/bypasmasuk"
+            android:layout_marginTop="80dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/person_login_white"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_black_24dp"
+                android:background="@color/black_transparant"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/user2"
+                android:hint="@string/hint_username_login"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/input_login"
+                android:textColorHint="@color/input_login_hint"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/password_icon"
+                android:background="@color/black_transparant"
+                />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/password"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:textColor="@color/input_login"
+                android:textColorHint="@color/input_login_hint"
+                />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnlogin"
+            android:layout_marginTop="25dp"
+            android:background="@color/btn_login_bg"
+            android:text="@string/btn_login"
+            android:textColor="@color/primaryDarkColor"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLinkToForgotPsswrd"
+            android:layout_marginTop="40dip"
+            android:background="@null"
+            android:text="@string/btn_butuh_bantuan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

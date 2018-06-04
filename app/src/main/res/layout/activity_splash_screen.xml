@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/primaryDarkColor"
+    tools:context=".SplashScreen">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+
+            android:src="@drawable/baby_incubators"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_judul_spalashscreen"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:paddingLeft="80dp"
+            android:textStyle="bold"
+            android:paddingRight="80dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+
