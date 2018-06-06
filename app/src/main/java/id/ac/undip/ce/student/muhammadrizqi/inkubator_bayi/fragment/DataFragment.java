@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -72,7 +73,7 @@ public class DataFragment extends Fragment {
     EditText dateAkhir;
     Button  btnunduh;
     String dateawal;
-    ProgressDialog loading;
+
     String dateakhir;
     Calendar dateawalcalendar;
     Calendar dateakhircalendar;
@@ -195,16 +196,45 @@ public class DataFragment extends Fragment {
         });
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
+        final CheckBox inkubatorcheckbox1 = (CheckBox) view.findViewById(R.id.data_ink1);
         btnunduh = view.findViewById(R.id.unduh_data);
         btnunduh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dateawal = dateAwal.getText().toString();
                 dateakhir = dateAkhir.getText().toString();
-                if(!dateawal.isEmpty()&&!dateakhir.isEmpty()){
-                    loading = new ProgressDialog(getActivity());
-                    loading.setCancelable(true);
-                    loading.show();
+
+                if(!dateawal.isEmpty()&&!dateakhir.isEmpty()&&inkubatorcheckbox1.isChecked()){
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+
+
+                    Call<ResponseBody> call = mApiInterface.downloadFile(
+                            dateFormat.format(dateawalcalendar.getTime()),
+                            timeFormat.format(dateawalcalendar.getTime()),
+                            dateFormat.format(dateakhircalendar.getTime()),
+                            timeFormat.format(dateakhircalendar.getTime()));
+
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()){
+//                            boolean success = writeResponseBodyToDisk(response.body());
+                                Log.e("Download",call.request().url().toString());
+                                new WriteToDisk(getContext(), response.body()).execute();
+
+                            }
+                            else {
+                                Log.e("Download","Download Failed");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            t.printStackTrace();
+                        }
+                    });
 
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(),"Harap isi dengan lengkap", Toast.LENGTH_SHORT).show();
@@ -213,40 +243,7 @@ public class DataFragment extends Fragment {
 
             }
         });
-        btnunduh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-
-                Call<ResponseBody> call = mApiInterface.downloadFile(
-                        dateFormat.format(dateawalcalendar.getTime()),
-                        timeFormat.format(dateawalcalendar.getTime()),
-                        dateFormat.format(dateakhircalendar.getTime()),
-                        timeFormat.format(dateakhircalendar.getTime()));
-
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-//                            boolean success = writeResponseBodyToDisk(response.body());
-                            Log.e("Download",call.request().url().toString());
-                            new WriteToDisk(getContext(), response.body()).execute();
-
-                        }
-                        else {
-                            Log.e("Download","Download Failed");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-            }
-        });
 
 
         return view;

@@ -2,9 +2,11 @@ package id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.telecom.Call;
@@ -14,12 +16,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
 import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
+import java.util.TimeZone;
 
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.MainActivity;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor1;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor2;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor3;
+import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.suhuchart;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.R;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Rest.ApiClient;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Rest.ApiInterface;
@@ -39,6 +54,7 @@ public class MonitoringFragment extends Fragment {
     View view;
     ApiInterface mApiInterface;
     SwipeRefreshLayout mSwipeResfreshLayout;
+    LineChart chartsuhu;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -107,6 +123,8 @@ public class MonitoringFragment extends Fragment {
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         Refresh();
+        setupChart();
+        updateChart();
         return view;
     }
 
@@ -189,6 +207,77 @@ public class MonitoringFragment extends Fragment {
             @Override
             public void onFailure(retrofit2.Call<sensor3> call, Throwable t) {
                 Log.e("Retrofit Get", t.toString());
+            }
+        });
+
+    }
+    private void setupChart(){
+
+        chartsuhu =(LineChart)view.findViewById(R.id.chartsuhuink1);
+        chartsuhu.setDescription("");
+
+        updateChart();
+    }
+    private void updateChart(){
+        retrofit2.Call<suhuchart> sensor1Call = mApiInterface.getsuhu();
+        sensor1Call.enqueue(new Callback<suhuchart>() {
+            @Override
+            public void onResponse(retrofit2.Call<suhuchart> call, Response<suhuchart> response) {
+                Log.e("erorr", call.request().url().toString());
+                sensor1[] sensor1s1 = response.body().getSensor1s();
+                ArrayList<Entry> entrysuhu = new ArrayList<>();
+                ArrayList<String> labelsuhu = new ArrayList<>();
+
+                entrysuhu.clear();
+                labelsuhu.clear();
+
+                //date formater
+                SimpleDateFormat sourceformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date parsed = new Date();
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+                dateFormat.setTimeZone(TimeZone.getDefault());
+
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                timeFormat.setTimeZone(TimeZone.getDefault());
+                //end date formater
+
+                int x = 0;
+                for (sensor1 suhu : sensor1s1){
+                    try {
+                        parsed =sourceformat.parse(suhu.getWaktu());
+                    }catch (Exception e){
+                        Log.e("setsuhuloadedlistener" ,"error parsing date");
+                        e.printStackTrace();
+                    }
+                    entrysuhu.add(new Entry(Float.parseFloat(suhu.getSuhu()),x));
+                    labelsuhu.add(timeFormat.format(parsed));
+                    x++;
+                }
+
+                LineDataSet lineDataSet = new LineDataSet(entrysuhu, "Derajat Celcius");
+                lineDataSet.setColor(Color.parseColor("#009688"));
+                lineDataSet.setCircleColor(Color.parseColor("#ffcdd2"));
+                lineDataSet.setCircleColorHole(Color.parseColor("#f44336"));
+                //error disini
+            //    LineData datasuhu = new LineData();
+              //  datasuhu.addDataSet(lineDataSet);
+                LineData datasuhu = new LineData(labelsuhu, lineDataSet);
+                chartsuhu.setData(datasuhu);
+                chartsuhu.notifyDataSetChanged();
+                chartsuhu.animateY(1000);
+
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<suhuchart> call, Throwable t) {
+                Log.e("erorr", call.request().url().toString());
+                try{
+                    Snackbar.make(getView(), "Rewfres data gagal, coba lagi nanti", Snackbar.LENGTH_LONG).show();
+
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

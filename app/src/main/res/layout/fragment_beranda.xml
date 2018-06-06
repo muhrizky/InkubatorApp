@@ -407,16 +407,12 @@
                         android:textStyle="bold" />
 
 
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/chart"
+                    <com.github.mikephil.charting.charts.LineChart
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:id="@+id/chartsuhuink1"
+                        android:layout_height="200dp">
 
-                    </com.github.mikephil.charting.charts.BarChart>
+                    </com.github.mikephil.charting.charts.LineChart>
 
                     <LinearLayout
                         android:layout_width="match_parent"

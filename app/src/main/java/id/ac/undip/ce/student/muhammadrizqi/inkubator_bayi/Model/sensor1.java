@@ -4,6 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class sensor1 {
 
+    public String getWaktu() {
+        return waktu;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+
+    @SerializedName("waktu")
+    private String waktu;
     @SerializedName("suhu")
     private String suhu;
     @SerializedName("kelembapan")
@@ -14,11 +24,12 @@ public class sensor1 {
     private String kadar_oksigen;
 
     public sensor1(){}
-    public sensor1(String suhu, String kelembapan, String berat_badan, String kadar_oksigen){
+    public sensor1(String suhu, String kelembapan, String berat_badan, String kadar_oksigen, String waktu){
         this.suhu = suhu;
         this.kelembapan = kelembapan;
         this.berat_badan =berat_badan;
         this.kadar_oksigen = kadar_oksigen;
+        this.waktu = waktu;
     }
 
     public String getSuhu() {

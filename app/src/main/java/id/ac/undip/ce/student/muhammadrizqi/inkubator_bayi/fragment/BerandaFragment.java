@@ -1,8 +1,10 @@
 package id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.fragment;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -14,18 +16,26 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.MainActivity;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor1;
+import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.suhuchart;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.R;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Rest.ApiClient;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Rest.ApiInterface;
@@ -43,12 +53,7 @@ import retrofit2.Response;
  */
 public class BerandaFragment extends Fragment  {
     View view;
-    BarChart chart;
-    ArrayList<BarEntry> barEntries;
-    ArrayList<String> barLabels;
-    BarDataSet barDataSet;
-    Chart chart1;
-    BarData barData;
+    LineChart chartsuhu;
     ApiInterface mApiInterface;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -115,6 +120,8 @@ public class BerandaFragment extends Fragment  {
                         mSwipeRefreshLayout.setRefreshing(false);
                         Refresh();
                         Refresh2();
+                        setupChart();
+                        updateChart();
 
                     }
                 }, 3000);
@@ -143,37 +150,13 @@ public class BerandaFragment extends Fragment  {
 
         jabatan.setText(Jabatan);
 
-        chart = (BarChart)view.findViewById(R.id.chart);
-        if (container == null){
-            return null;
-        }
 
-        barEntries = new ArrayList<BarEntry>();
-        barLabels = new ArrayList<String>();
-
-        barLabels.add("");// index 0 kosongkan saja
-        barEntries.add(new BarEntry(1, 28f));
-        barLabels.add("Inkubator 1");
-        barEntries.add(new BarEntry(2, 25f));
-        barLabels.add("Inkubator 2");
-        barEntries.add(new BarEntry(3, 20f));
-        barLabels.add("Inkubator 3");
-
-        barDataSet = new BarDataSet(barEntries, "Projects");
-
-        barData = new BarData(barDataSet);
-        chart.getXAxis().setValueFormatter(
-                new IndexAxisValueFormatter(barLabels));
-
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        chart.setData(barData);
-
-        chart.animateY(3000);
 
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         Refresh();
+        setupChart();
+        updateChart();
         Refresh2();
         return view;
 
@@ -224,6 +207,75 @@ public class BerandaFragment extends Fragment  {
 
             }
         });
+    }
+    private void setupChart(){
+        chartsuhu =(LineChart)view.findViewById(R.id.chartsuhuink1);
+        chartsuhu.setDescription("");
+
+        updateChart();
+    }
+    private void updateChart(){
+        Call<suhuchart> sensor1Call = mApiInterface.getsuhu();
+        sensor1Call.enqueue(new Callback<suhuchart>() {
+            @Override
+            public void onResponse(Call<suhuchart> call, Response<suhuchart> response) {
+                Log.e("error", call.request().url().toString());
+                sensor1[] sensor1s = response.body().getSensor1s();
+                ArrayList<Entry> entrysuhu = new ArrayList<>();
+                ArrayList<String> labelsuhu = new ArrayList<>();
+
+                entrysuhu.clear();
+                labelsuhu.clear();
+
+                //date formater
+                SimpleDateFormat sourceformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date parsed = new Date();SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+                dateFormat.setTimeZone(TimeZone.getDefault());
+
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                timeFormat.setTimeZone(TimeZone.getDefault());
+                //end date formater
+
+                int x = 0;
+                for (sensor1 suhu : sensor1s){
+                    try {
+                        parsed =sourceformat.parse(suhu.getWaktu());
+                    }catch (Exception e){
+                        Log.e("setsuhuloadedlistener" ,"error parsing date");
+                        e.printStackTrace();
+                    }
+                    entrysuhu.add(new Entry(Float.parseFloat(suhu.getSuhu()),x));
+                    labelsuhu.add(timeFormat.format(parsed));
+                    x++;
+                }
+
+                LineDataSet lineDataSet = new LineDataSet(entrysuhu, "Derajat Celcius");
+                lineDataSet.setColor(Color.parseColor("#009688"));
+                lineDataSet.setCircleColor(Color.parseColor("#ffcdd2"));
+                lineDataSet.setCircleColorHole(Color.parseColor("#f44336"));
+                //error disini
+                //    LineData datasuhu = new LineData();
+                //  datasuhu.addDataSet(lineDataSet);
+                LineData datasuhu = new LineData(labelsuhu, lineDataSet);
+                chartsuhu.setData(datasuhu);
+                chartsuhu.notifyDataSetChanged();
+                chartsuhu.animateY(1000);
+
+            }
+
+            @Override
+            public void onFailure(Call<suhuchart> call, Throwable t) {
+                Log.e("erorr", call.request().url().toString());
+                try{
+                    Snackbar.make(getView(), "Rewfres data gagal, coba lagi nanti", Snackbar.LENGTH_LONG).show();
+
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
     }
 
 

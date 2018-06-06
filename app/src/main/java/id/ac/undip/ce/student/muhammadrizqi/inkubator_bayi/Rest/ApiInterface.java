@@ -5,6 +5,7 @@ import java.util.Map;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor1;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor2;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor3;
+import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.suhuchart;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -35,5 +36,7 @@ public interface ApiInterface {
                                     @Query("waktu_awal") String waktuawal,
                                     @Query("date_akhir") String dateakhir,
                                     @Query("waktu_akhir") String waktuakhir);
+    @GET("suhu")
+    Call<suhuchart>getsuhu();
 
 }
