@@ -213,14 +213,125 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryDarkColor"
+                        android:padding="10dp"
+                        android:text="@string/text_judul_card5bernda"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:layout_width="match_parent"
+                        android:id="@+id/chartsuhuink1"
+                        android:layout_height="200dp">
+
+                    </com.github.mikephil.charting.charts.LineChart>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="3dp"
+                            android:text="@string/text_judul_grafik"
+                            android:textColor="@color/black_transparant"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="3dp"
+                            android:text="@string/text_penjelasan_grafik"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="@color/primaryDarkColor"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/masuksimulasi"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/simulasi_icon" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/text_judul_card4beranda"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:text="@string/text_penjelasan_card3"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+
                 android:padding="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardPreventCornerOverlap="false">
@@ -301,6 +412,7 @@
                         >
 
                         <EditText
+                            android:id="@+id/edt_suhutujuanink1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -314,6 +426,7 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
+                        android:id="@+id/btnsetsuhu_ink1"
                         android:theme="@style/Widget.AppCompat.Button.Colored"
                         android:gravity="center"
                         android:layout_width="match_parent"
@@ -330,127 +443,9 @@
 
 
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
-                app:cardBackgroundColor="@color/primaryDarkColor"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:id="@+id/masuksimulasi"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="start"
-                        android:foregroundGravity="center"
-                        android:src="@drawable/simulasi_icon" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/text_judul_card4beranda"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginRight="10dp"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            android:text="@string/text_penjelasan_card3"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="2dp"
-                android:padding="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardPreventCornerOverlap="false">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/primaryDarkColor"
-                        android:padding="10dp"
-                        android:text="@string/text_judul_card5bernda"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
 
 
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:layout_width="match_parent"
-                        android:id="@+id/chartsuhuink1"
-                        android:layout_height="200dp">
 
-                    </com.github.mikephil.charting.charts.LineChart>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="7dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="3dp"
-                            android:text="@string/text_judul_grafik"
-                            android:textColor="@color/black_transparant"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="3dp"
-                            android:text="@string/text_penjelasan_grafik"
-                            android:textSize="12sp" />
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="@string/btn_unduh_data_card5beranda"
-                            android:textColor="@color/black_transparant"
-                            android:textSize="10sp"
-                            android:textStyle="bold"
-                            android:typeface="sans" />
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </ScrollView>

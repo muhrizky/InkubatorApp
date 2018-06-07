@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
@@ -31,6 +34,7 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.MainActivity;
@@ -56,6 +60,8 @@ public class BerandaFragment extends Fragment  {
     LineChart chartsuhu;
     ApiInterface mApiInterface;
     SwipeRefreshLayout mSwipeRefreshLayout;
+    EditText edtsuhutujuan1;
+    Button btnset_suhu1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -158,6 +164,30 @@ public class BerandaFragment extends Fragment  {
         setupChart();
         updateChart();
         Refresh2();
+
+        edtsuhutujuan1 = view.findViewById(R.id.edt_suhutujuanink1);
+        btnset_suhu1 = view.findViewById(R.id.btnsetsuhu_ink1);
+        btnset_suhu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String suhusimpan1 = edtsuhutujuan1.getText().toString();
+                HashMap<String, String> data=new HashMap<>();
+                data.put("suhu", suhusimpan1);
+                retrofit2.Call<sensor1> sensor1Call = mApiInterface.postsensorsuhu(data);
+                sensor1Call.enqueue(new Callback<sensor1>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<sensor1> call, Response<sensor1> response) {
+                        Toast.makeText(getContext(),"Sensor suhu sudah diupdate",Toast.LENGTH_LONG).show();
+                        Refresh();
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<sensor1> call, Throwable t) {
+                        Toast.makeText(getContext(),"Sensor suhu gagal untuk keupdate",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
         return view;
 
     }

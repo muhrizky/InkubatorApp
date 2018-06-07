@@ -51,7 +51,7 @@
         <!-- Card lima -->
             <string name="text_judul_card5bernda">Data Inkubator</string>
             <string name="text_judul_grafik">Grafik Data Suhu</string>
-            <string name="text_penjelasan_grafik">Data ini merupakan perbandingan Suhu tiap Inkubator, dalam kurun waktu 1 hari yang lalu</string>
+            <string name="text_penjelasan_grafik">Grafik ini menunjukan semua aktifitas dari suhu baik peningkatan atau penurunan suhu dalam inkubator bayi, semuanya termonitor baik disini.</string>
             <string name="btn_unduh_data_card5beranda">Unduh Data Ini</string>
 
 

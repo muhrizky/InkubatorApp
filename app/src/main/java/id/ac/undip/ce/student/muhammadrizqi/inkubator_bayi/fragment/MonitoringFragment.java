@@ -2,6 +2,7 @@ package id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -31,6 +33,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.MainActivity;
+import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.kadar_oksigen_chart;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor1;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor2;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor3;
@@ -55,6 +58,9 @@ public class MonitoringFragment extends Fragment {
     ApiInterface mApiInterface;
     SwipeRefreshLayout mSwipeResfreshLayout;
     LineChart chartsuhu;
+    LineChart chartkadar_oksigen;
+    ProgressBar progressBarkelembapan;
+    int maxValue=100;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -118,6 +124,8 @@ public class MonitoringFragment extends Fragment {
                 }, 3000);
             }
         });
+        //progresbar
+        progressBarkelembapan = (ProgressBar)view.findViewById(R.id.progresskelembapan);
 
 
 
@@ -142,16 +150,28 @@ public class MonitoringFragment extends Fragment {
                 String kelembapan = response.body().getKelembapan();
                 String berat_badan = response.body().getBerat_badan();
                 String kadar_oksigen = response.body().getKadar_oksigen();
+                String waktu = response.body().getWaktu();
+
 
                 TextView suhutxt = view.findViewById(R.id.nilaisuhu);
                 TextView kelembapantxt = view.findViewById(R.id.nilaikelembapan);
                 TextView berat_badantxt = view.findViewById(R.id.nilaiberat);
                 TextView kadar_oksigentxt = view.findViewById(R.id.nialaikadar_oksigen);
+                TextView berat_badan2txt = view.findViewById(R.id.nilaiberat4);
+                TextView waktuberat_badantxt = view.findViewById(R.id.update_berat_text);
+                TextView kelembapantxt2 = view.findViewById(R.id.progress_kelembapan_text);
+                TextView waktukelembapantxt = view.findViewById(R.id.update_kelembapan_text);
                 suhutxt.setText(suhu+" °C");
                 kelembapantxt.setText(kelembapan+" %");
                 berat_badantxt.setText(berat_badan+" Kg");
+                berat_badan2txt.setText(berat_badan+ "Kg");
+                waktuberat_badantxt.setText(waktu);
                 kadar_oksigentxt.setText(kadar_oksigen+ " mg/l");
-
+                kelembapantxt2.setText(kelembapan+" %");
+                waktukelembapantxt.setText(waktu);
+                int kelembapanprogresbar = Integer.parseInt(kelembapan);
+                progressBarkelembapan.setProgress(kelembapanprogresbar);
+                progressBarkelembapan.setMax(maxValue);
             }
             @Override
             public void onFailure(retrofit2.Call<sensor1> call, Throwable t) {
@@ -168,7 +188,7 @@ public class MonitoringFragment extends Fragment {
                 String berat_badan2 = response.body().getBerat_badan();
                 String kadar_oksigen2 = response.body().getKadar_oksigen();
 
-                TextView suhutxt2 = view.findViewById(R.id.nialaikadar_oksigen2);
+                TextView suhutxt2 = view.findViewById(R.id.nilaisuhu2);
                 TextView kelembapantxt2 = view.findViewById(R.id.nilaikelembapan2);
                 TextView berat_badantxt2 = view.findViewById(R.id.nilaiberat2);
                 TextView kadar_oksigentxt2 = view.findViewById(R.id.nialaikadar_oksigen2);
@@ -214,11 +234,14 @@ public class MonitoringFragment extends Fragment {
     private void setupChart(){
 
         chartsuhu =(LineChart)view.findViewById(R.id.chartsuhuink1);
+        chartkadar_oksigen = (LineChart)view.findViewById(R.id.chartkadaroksigen);
         chartsuhu.setDescription("");
+        chartkadar_oksigen.setDescription("");
 
         updateChart();
     }
     private void updateChart(){
+        //chart suhu
         retrofit2.Call<suhuchart> sensor1Call = mApiInterface.getsuhu();
         sensor1Call.enqueue(new Callback<suhuchart>() {
             @Override
@@ -281,7 +304,71 @@ public class MonitoringFragment extends Fragment {
             }
         });
 
+        //chart kadar oksigen
+        retrofit2.Call<kadar_oksigen_chart> kadar_oksigen_chartCall = mApiInterface.getkadar_oksigen();
+        kadar_oksigen_chartCall.enqueue(new Callback<kadar_oksigen_chart>() {
+            @Override
+            public void onResponse(retrofit2.Call<kadar_oksigen_chart> call, Response<kadar_oksigen_chart> response) {
+                Log.e("Erorr", call.request().url().toString());
+                sensor1[] sensor1s = response.body().getSensor1s();
+                ArrayList<Entry> entrykadaroksigen = new ArrayList<>();
+                ArrayList<String> labelkadaroksigen = new ArrayList<>();
+
+
+                entrykadaroksigen.clear();
+                labelkadaroksigen.clear();
+                //date formater
+                SimpleDateFormat sourceformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date parsed = new Date();
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+                dateFormat.setTimeZone(TimeZone.getDefault());
+
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                timeFormat.setTimeZone(TimeZone.getDefault());
+                //end date formater
+
+                int x = 0;
+                for (sensor1 kadar_oksigen : sensor1s){
+                    try {
+                        parsed =sourceformat.parse(kadar_oksigen.getWaktu());
+                    }catch (Exception e){
+                        Log.e("setkadaroksigenlistener" ,"error parsing date");
+                        e.printStackTrace();
+                    }
+                    entrykadaroksigen.add(new Entry(Float.parseFloat(kadar_oksigen.getKadar_oksigen()),x));
+                    labelkadaroksigen.add(timeFormat.format(parsed));
+                    x++;
+                }
+                LineDataSet lineDataSet = new LineDataSet(entrykadaroksigen, "Derajat Celcius");
+                lineDataSet.setColor(Color.parseColor("#009688"));
+                lineDataSet.setCircleColor(Color.parseColor("#ffcdd2"));
+                lineDataSet.setCircleColorHole(Color.parseColor("#f44336"));
+
+                LineData datakadaroksigen = new LineData(labelkadaroksigen, lineDataSet);
+                chartkadar_oksigen.setData(datakadaroksigen);
+                chartkadar_oksigen.notifyDataSetChanged();
+                chartkadar_oksigen.animateY(1000);
+
+
+            }
+
+
+            @Override
+            public void onFailure(retrofit2.Call<kadar_oksigen_chart> call, Throwable t) {
+                Log.e("erorr", call.request().url().toString());
+                try{
+                    Snackbar.make(getView(), "Rewfres data gagal, coba lagi nanti", Snackbar.LENGTH_LONG).show();
+
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
     }
+
 
 
 

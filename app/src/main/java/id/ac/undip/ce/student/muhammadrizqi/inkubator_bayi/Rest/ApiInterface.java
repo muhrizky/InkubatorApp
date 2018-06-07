@@ -2,6 +2,7 @@ package id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Rest;
 
 import java.util.Map;
 
+import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.kadar_oksigen_chart;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor1;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor2;
 import id.ac.undip.ce.student.muhammadrizqi.inkubator_bayi.Model.sensor3;
@@ -38,5 +39,20 @@ public interface ApiInterface {
                                     @Query("waktu_akhir") String waktuakhir);
     @GET("suhu")
     Call<suhuchart>getsuhu();
+
+    @GET ("kadar_oksigen")
+    Call<kadar_oksigen_chart>getkadar_oksigen();
+
+    @FormUrlEncoded
+    @POST("sensor1")
+    Call<sensor1>postsensorsuhu(@FieldMap() Map<String,String> data);
+
+    @FormUrlEncoded
+    @POST("sensor2")
+    Call<sensor2>postsensorsuhu2(@FieldMap() Map<String, String>data);
+
+    @FormUrlEncoded
+    @POST("sensor3")
+    Call<sensor3>postsensorsuhu3(@FieldMap() Map<String, String>data);
 
 }
